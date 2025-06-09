@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="UTF-8">
+  <title>會員中心</title>
+  <link rel="stylesheet" href="/static/style.css">
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-fixed bg-center bg-cover min-h-screen text-gray-800"
+      style="background-image: url('/static/bg_index.jpg')">
+
+  <!-- 頂部橫條 -->
+  <div class="w-full bg-[rgba(44,76,64,0.8)] text-white flex items-center justify-between px-8 py-2 shadow-md">
+    <div class="flex items-center space-x-3">
+      <img src="/static/paw-icon.png" alt="paw" class="w-[8%] h-auto opacity-95">
+      <span class="text-3xl font-semibold tracking-wide">浪貓通報日誌~會員中心</span>
+    </div>
+    <button onclick="location.href='/logout'"
+            class="text-white border border-[#c13e3e] px-4 py-1 rounded-md shadow hover:shadow-lg transition whitespace-nowrap"
+            style="background-color: rgba(148, 40, 40, 0.7);"
+            onmouseover="this.style.backgroundColor='rgba(120, 30, 30, 0.85)'"
+            onmouseout="this.style.backgroundColor='rgba(148, 40, 40, 0.7)'">
+        登出
+    </button>
+  </div>
+
+  <!-- 歡迎區塊 -->
+  <div class="text-center my-10 px-4">
+    <h1 class="text-4xl font-bold text-stone-700 drop-shadow mb-2">喵～歡迎回來～{{ nickname }}！</h1>
+    <p class="text-lg text-stone-600">🐾今天也準備好一起為喵喵努力了嗎～🐾</p>
+  </div>
+
+  <!-- 主功能區 -->
+  <div class="flex flex-col md:flex-row gap-6 justify-center px-4 mb-16">
+    
+    <!-- 通報者區塊 -->
+  <div class="bg-white bg-opacity-40 rounded-xl shadow-lg p-6 w-full max-w-md text-center">
+    <h2 class="text-2xl font-semibold text-stone-700 mb-3">通報日誌</h2>
+    <div class="text-stone-700 mb-4">
+      <p>裡面您可以填寫求助的相關資訊，包含：</p>
+        <br/>
+      <li>發現時間、詳細地點</li>
+      <li>周遭環境、貓貓狀況</li>
+        <br/>
+      <p>資訊將通報給愛媽們做後續救援</p>
+      <p>非常感謝您對浪貓的幫助</p>
+    </div>
+    <button onclick="location.href='/reporter'"
+            class="text-white border border-[#29675b] px-6 py-3 rounded-xl shadow hover:shadow-lg transition"
+            style="background-color: rgba(44, 76, 64, 0.736);" 
+            onmouseover="this.style.backgroundColor='rgba(44, 76, 64, 0.85)'"
+            onmouseout="this.style.backgroundColor='rgba(44, 76, 64, 0.5)'">
+      前往通報
+    </button>
+    </div>
+
+    <!-- 救援者區塊 -->
+  <div class="bg-white bg-opacity-40 rounded-xl shadow-lg p-6 w-full max-w-md text-center">
+    <h2 class="text-2xl font-semibold text-stone-700 mb-3">救援日誌</h2>
+    <div class="text-stone-700 mb-4">
+      <p>在這裡除了瀏覽待救援通報資訊，您還可以～</p>
+        <br/>
+      <ul class="list-disc list-inside pl-8 text-stone-700">  
+        <li>更新救援進度&nbsp;&nbsp;&nbsp;&nbsp;</li>  
+        <li>查看歷史救援紀錄</li>
+      </ul>
+        <br/>
+      <p>在這條充滿挑戰的救援路上</p>
+      <p>感謝有您的努力與付出！</p>
+    </div>
+    <button onclick="location.href='/rescuer'"
+            class="text-white border border-[#29675b] px-6 py-3 rounded-xl shadow hover:shadow-lg transition"
+            style="background-color: rgba(44, 76, 64, 0.736);" 
+            onmouseover="this.style.backgroundColor='rgba(44, 76, 64, 0.85)'"
+            onmouseout="this.style.backgroundColor='rgba(44, 76, 64, 0.5)'">
+      前往救援
+    </button>
+  </div>
+
+  </div>
+
+  <footer class="w-full bg-[rgba(44,76,64,0.8)] text-white mt-20 py-4 text-center">
+    Copyright © 2025 StrayCats
+  </footer>
+</body>
+</html>
+

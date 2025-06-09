@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="UTF-8">
+  <title>浪貓救援中心</title>
+  <link rel="stylesheet" href="/static/style.css">
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-fixed bg-center bg-cover min-h-screen text-gray-800" style="background-image: url('/static/bg_index.jpg')">
+
+  <!-- 頂部橫條 -->
+  <div class="w-full bg-[rgba(44,76,64,0.8)] text-white flex items-center justify-between px-8 py-2 shadow-md">
+    <div class="flex items-center space-x-3">
+      <img src="/static/paw-icon.png" alt="paw" class="w-[8%] h-auto opacity-95">
+      <span class="text-3xl font-semibold tracking-wide">浪貓通報日誌～救援中心</span>
+    </div>
+    <button onclick="location.href='/member'"
+            class="text-white border border-[#c13e3e] px-4 py-1 rounded-md shadow hover:shadow-lg transition whitespace-nowrap"
+            style="background-color: rgba(148, 40, 40, 0.7);"
+            onmouseover="this.style.backgroundColor='rgba(120, 30, 30, 0.85)'"
+            onmouseout="this.style.backgroundColor='rgba(148, 40, 40, 0.7)'">
+      返回
+    </button>
+  </div>
+
+  <!-- 搜尋區域選擇 -->
+  <div class="px-4 py-10 max-w-4xl mx-auto">
+    <form method="get" action="/rescuer" class="bg-white bg-opacity-60 p-6 rounded-xl shadow-lg space-y-4">
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+        <label class="block">縣市：
+          <select name="city" id="city" class="w-full px-3 py-2 rounded border border-gray-300"
+                  data-selected="{{ city or '' }}">
+            <option value="">--選擇縣市--</option>
+          </select>
+        </label>
+        <label class="block">區域：
+          <select name="district" id="district" class="w-full px-3 py-2 rounded border border-gray-300"
+                  data-selected="{{ district or '' }}">
+            <option value="">--選擇區域--</option>
+          </select>
+        </label>
+      </div>
+      <div class="flex justify-center">
+        <button type="submit" class="px-6 py-2 rounded-xl border border-[#b08968] text-[#5c4631] bg-[#e4b07b] hover:bg-[#d79c64] shadow transition">
+          🔍 搜尋
+        </button>
+      </div>
+    </form>
+  </div>
+
+  <!-- 救援案件列表 -->
+  <div class="max-w-7xl mx-auto bg-white bg-opacity-60 rounded-xl shadow-lg p-6 mb-12">
+    <h3 class="text-2xl font-semibold text-stone-700 mb-4">🐾 等待救援的貓貓</h3>
+    <div class="overflow-x-auto">
+      <div class="max-h-[500px] overflow-y-auto">  
+        <table class="min-w-full border-separate border-spacing-0 text-sm text-center">
+            <thead class="bg-[#f5e6ca] text-[#5c4631] sticky top-0 z-10">
+            <tr>
+                <th class="px-4 py-3 h-12 bg-[#f5e6ca]">編號</th>
+                <th class="bg-[#f5e6ca]">救援狀態</th>
+                <th class="bg-[#f5e6ca]">變更狀態</th>
+                <th class="bg-[#f5e6ca]">時間</th>
+                <th class="bg-[#f5e6ca]">地址</th>
+                <th class="bg-[#f5e6ca]">貓咪狀態</th>
+                <th class="bg-[#f5e6ca]">環境描述</th>
+                <th class="bg-[#f5e6ca]">貓咪照片</th>
+                <th class="bg-[#f5e6ca]">環境照片</th>
+            </tr>
+            </thead>
+            <tbody id="report-table" class="bg-white/80">
+            {% for report in reports %}
+            <tr data-id="{{ report._id }}">
+                <td>{{ loop.index }}</td>
+                <td class="status">{{ report.rescue_status if report.rescue_status else '待救援' }}</td>
+                <td>
+                {% if not report.rescue_status or report.rescue_status == '待救援' %}
+                <button onclick="updateStatus('{{ report._id }}', this)"
+                        class="text-xs px-3 py-1 rounded border border-green-700 bg-green-100 hover:bg-green-200 transition">
+                    變更為已救援
+                </button>
+                {% else %}-{% endif %}
+                </td>
+                <td>{{ report.formatted_time }}</td>
+                <td>{{ report.location }}</td>
+                <td>{{ report.status }}</td>
+                <td>{{ report.description }}</td>
+                <td><img src="{{ report.cat_photo }}" alt="貓咪照" class="max-w-[80px] mx-auto"></td>
+                <td><img src="{{ report.env_photo }}" alt="環境照" class="max-w-[80px] mx-auto"></td>
+            </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+      </div>  
+    </div>
+  </div>
+  <!-- 歷史救援紀錄表格（新增） -->
+  <div class="max-w-7xl mx-auto bg-white bg-opacity-50 rounded-xl shadow-lg p-6 mb-12">
+    <h3 class="text-2xl font-semibold text-stone-700 mb-4">🐾 歷史救援紀錄</h3>
+    <div class="overflow-x-auto">
+      <div class="max-h-[400px] overflow-y-auto">
+        <table class="min-w-full border-separate border-spacing-0 text-sm text-center">
+          <thead class="bg-[#f5e6ca] text-[#5c4631] sticky top-0 z-10">
+            <tr>
+              <th class="px-4 py-3 h-12 bg-[#f5e6ca]">編號</th>
+              <th class="bg-[#f5e6ca]">救援時間</th>
+              <th class="bg-[#f5e6ca]">地址</th>
+              <th class="bg-[#f5e6ca]">貓咪狀態</th>
+              <th class="bg-[#f5e6ca]">環境描述</th>
+              <th class="bg-[#f5e6ca]">貓咪照片</th>
+              <th class="bg-[#f5e6ca]">環境照片</th>
+            </tr>
+          </thead>
+          <tbody id="rescued-history-table" class="bg-white/80">
+            {% for record in rescued_reports %}
+            <tr>
+              <td>{{ loop.index }}</td>
+              <td>{{ record.formatted_time }}</td>
+              <td>{{ record.location }}</td>
+              <td>{{ record.status }}</td>
+              <td>{{ record.description }}</td>
+              <td><img src="{{ record.cat_photo }}" alt="貓咪照" class="max-w-[80px] mx-auto"></td>
+              <td><img src="{{ record.env_photo }}" alt="環境照" class="max-w-[80px] mx-auto"></td>
+            </tr>
+            {% endfor %}
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+
+  <footer class="w-full bg-[rgba(44,76,64,0.8)] text-white mt-20 py-4 text-center">
+    Copyright © 2025 StrayCats
+  </footer>
+
+  <!-- 載入 JS 檔案 -->
+  <script type="module" src="/static/js/rescuer.js"></script>
+</body>
+</html>
+

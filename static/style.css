@@ -1,0 +1,17 @@
+/* 載入字體 */
+@font-face {
+  font-family: 'JasonHandwriting';
+  src: url('/static/fonts/JasonHandwriting2.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
+
+/* 全站字體設定 */
+body {
+  font-family: 'JasonHandwriting', 'Noto Sans TC', sans-serif;
+}
+
+/* 你可以加：讓標題更明顯 */
+h1, h2, h3 {
+  font-weight: bold;
+}

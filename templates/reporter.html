@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="UTF-8">
+  <title>浪貓通報中心</title>
+  <link rel="stylesheet" href="/static/style.css">
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-fixed bg-center bg-cover min-h-screen text-gray-800"
+      style="background-image: url('/static/bg_index.jpg')">
+
+  <!-- 頂部橫條 -->
+  <div class="w-full bg-[rgba(44,76,64,0.8)] text-white flex items-center justify-between px-8 py-2 shadow-md">
+    <div class="flex items-center space-x-3">
+      <img src="/static/paw-icon.png" alt="paw" class="w-[8%] h-auto opacity-95">
+      <span class="text-3xl font-semibold tracking-wide">浪貓通報日誌～通報中心</span>
+    </div>
+    <button onclick="location.href='/member'"
+            class="text-white border border-[#c13e3e] px-4 py-1 rounded-md shadow hover:shadow-lg transition whitespace-nowrap"
+            style="background-color: rgba(148, 40, 40, 0.7);"
+            onmouseover="this.style.backgroundColor='rgba(120, 30, 30, 0.85)'"
+            onmouseout="this.style.backgroundColor='rgba(148, 40, 40, 0.7)'">
+        返回
+    </button>
+  </div>      
+
+  <!-- 通報標題 -->
+  <div class="text-center px-4 py-10">
+    <h2 class="text-4xl font-bold text-stone-700 mb-2 drop-shadow">浪浪～目擊通報！</h2>
+    <p class="text-stone-600">請盡可能提供準確資訊～協助後續救援</p>
+  </div>
+
+  <!-- 通報表單卡片 -->
+  <div class="bg-white bg-opacity-60 rounded-xl shadow-lg max-w-3xl mx-auto p-6 mb-10">
+    <form id="report-form" method="post" action="/reporter" enctype="multipart/form-data" class="space-y-4">
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+        <label>發現時間：<input type="datetime-local" name="time" required class="w-full px-3 py-2 rounded border border-gray-300"></label>
+        <label>縣市：
+          <select id="city" name="city" required class="w-full px-3 py-2 rounded border border-gray-300">
+            <option value="">請選擇</option>
+          </select>
+        </label>
+        <label>行政區：
+          <select id="district" name="district" required disabled class="w-full px-3 py-2 rounded border border-gray-300">
+            <option value="">請先選擇縣市</option>
+          </select>
+        </label>
+        <label>詳細地址：
+          <input type="text" id="detail-address" required class="w-full px-3 py-2 rounded border border-gray-300"
+                 placeholder="詳細的地點可以加快救援速度唷～">
+        </label>
+      </div>
+      <input type="hidden" name="location" id="full-location">
+      <label class="block">貓咪狀態：
+        <textarea type="text" name="status" required class="w-full px-3 py-2 rounded border border-gray-300"
+                  placeholder="良好、受傷、或其他特殊狀況等，可以詳細描述～"></textarea>
+      </label>
+      <label class="block">周圍環境描述：
+        <textarea name="description" required class="w-full px-3 py-2 rounded border border-gray-300"
+                  placeholder="一些明確的標的物可以讓愛媽們快速找到貓貓唷～"></textarea>
+      </label>
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+        <label>貓咪照片：<input type="file" name="cat_photo" accept="image/*" required class="w-full"></label>
+        <label>環境照片：<input type="file" name="env_photo" accept="image/*" required class="w-full"></label>
+      </div>
+      <div class="flex justify-center space-x-6 pt-4">
+        <button type="submit"
+          class="px-6 py-2 rounded-xl border border-[#b08968] text-[#5c4631] bg-[#e4b07b] hover:bg-[#d79c64] shadow transition">
+          送出通報
+        </button>
+      </div>
+    </form>
+  </div>
+
+  <!-- 歷史紀錄表格 -->
+  <div class="max-w-6xl mx-auto bg-white bg-opacity-60 rounded-xl shadow-lg p-6">
+    <h3 class="text-2xl font-semibold text-stone-700 mb-4">🐾 您的歷史通報紀錄</h3>
+    <div class="overflow-x-auto">
+      <table class="min-w-full table-auto border text-sm text-center">
+        <thead class="bg-[#f5e6ca] text-[#5c4631]">
+          <tr>
+            <th class="px-4 py-2">編號</th>
+            <th>救援狀態</th>
+            <th>時間</th>
+            <th>地址</th>
+            <th>貓咪狀態</th>
+            <th>環境描述</th>
+            <th>貓咪照片</th>
+            <th>環境照片</th>
+          </tr>
+        </thead>
+        <tbody id="report-table-body" class="bg-white/80">
+          {% for report in reports %}
+          <tr>
+            <td>{{ loop.index }}</td>
+            <td>{{ report.rescue_status if report.rescue_status else '待救援' }}</td>
+            <td>{{ report.formatted_time }}</td>
+            <td>{{ report.location }}</td>
+            <td>{{ report.status }}</td>
+            <td>{{ report.description }}</td>
+            <td><img src="{{ report.cat_photo }}" alt="貓咪照" class="max-w-[80px] mx-auto"></td>
+            <td><img src="{{ report.env_photo }}" alt="環境照" class="max-w-[80px] mx-auto"></td>
+          </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <footer class="w-full bg-[rgba(44,76,64,0.8)] text-white mt-20 py-4 text-center">
+    Copyright © 2025 StrayCats
+  </footer>
+
+  <script type="module" src="/static/js/reporter.js"></script>
+</body>
+</html>
+

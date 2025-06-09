@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="UTF-8">
+  <title>浪貓通報日誌</title>
+  <link rel="stylesheet" href="/static/style.css">
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-fixed bg-center bg-cover min-h-screen flex flex-col items-center justify-center py-10 text-gray-800"
+      style="background-image: url('/static/bg_index.jpg')">
+
+  <div class="text-center mb-10 mt-40" >
+    <img src="/static/paw-icon.png" alt="paw" class="w-28 mx-auto h-auto mb-0 opacity-80">
+    <h1 class="text-5xl font-bold text-stone-700 drop-shadow mb-2">浪貓通報日誌</h1>
+    <p class="text-xl text-stone-600">流浪中~也有希望的足跡 🐾</p>
+  </div>
+
+  <div class="flex space-x-6">
+    <button onclick="showModal('register')"
+            class="text-white border border-[#29675b] px-6 py-2 rounded-xl shadow hover:shadow-lg transition"
+            style="background-color: rgba(44, 76, 64, 0.736);" 
+            onmouseover="this.style.backgroundColor='rgba(44, 76, 64, 0.85)'"
+            onmouseout="this.style.backgroundColor='rgba(44, 76, 64, 0.5)'">
+      註冊帳號
+    </button>
+
+    <button onclick="showModal('signin')"
+            class="text-white border border-[#29675b] px-6 py-2 rounded-xl shadow hover:shadow-lg transition"
+            style="background-color: rgba(44, 76, 64, 0.736);" 
+            onmouseover="this.style.backgroundColor='rgba(44, 76, 64, 0.85)'"
+            onmouseout="this.style.backgroundColor='rgba(44, 76, 64, 0.5)'">
+      登入系統
+    </button>
+  </div>
+
+  <!-- 介紹區塊 -->
+  <div class="bg-white bg-opacity-60 rounded-xl shadow-lg max-w-5xl mx-auto p-6 mt-60 flex items-center space-x-6">
+    <!-- 左側輪播區 -->
+    <div class="relative w-[36rem] h-[22.5rem] overflow-hidden rounded-xl shadow border border-stone-300">
+    <img id="cat-carousel" src="/static/cats/cat1.jpg"
+       class="absolute w-full h-full object-cover object-center transition-opacity duration-[1250ms] ease-in-out"
+          style="mask-image: radial-gradient(circle at center, white 70%, transparent 100%); -webkit-mask-image: radial-gradient(circle at center, white 70%, transparent 100%);">
+    </div>
+
+    <!-- 右側網站介紹 -->
+    <div class="w-2/5 pl-8">
+      <h2 class="text-2xl font-semibold text-stone-700 mb-2">關於浪貓通報日誌</h2>
+      <p class="text-stone-700 leading-relaxed space-y-2">
+        是一個結合「通報與救援」的平台<br>
+        讓您能輕鬆回報浪貓的位置與狀態<br>
+        讓愛媽與志工們能迅速地展開救援與追蹤
+        <br><br>
+        流浪的牠們無法求救<br>
+        每一次的通報，都是對牠們的關心<br>
+        每一筆紀錄，都是重獲新生的起點
+        <br><br>
+        現在，邀請你一起加入<br>
+        為可愛的生命帶來希望與歸屬感 🐾
+      </p>
+    </div>
+  </div>
+
+  <!-- 註冊 Modal -->
+  <div id="register" class="modal hidden fixed inset-0 bg-black bg-opacity-40 flex items-center justify-center z-10">
+    <div class="relative bg-cover bg-center border-2 border-[#c8ad7f] p-0 rounded-xl shadow-lg w-full max-w-md"
+         style="background-image: url('/static/bg_register_signin.jpg');">
+      <div class="bg-white bg-opacity-5 p-8 rounded-xl">
+        <h3 class="text-2xl mb-4 text-stone-700 text-center">🐾 會員註冊 🐾</h3>
+        <form action="/register" method="post" class="space-y-4">
+          <input type="text" name="nickname" placeholder="暱稱"
+                class="w-full border border-stone-300 px-4 py-2 rounded focus:outline-none">
+          <input type="email" name="email" placeholder="信箱"
+                class="w-full border border-stone-300 px-4 py-2 rounded">
+          <input type="password" name="password" placeholder="密碼，至少１０位數字並包含2位小寫英文字母"
+                minlength="10" pattern="^(?=(?:.*[a-z]){2,})[a-z\d]{10,}$"
+                class="w-full border border-stone-300 px-4 py-2 rounded">
+          <input type="password" name="confirm" placeholder="確認密碼"
+                class="w-full border border-stone-300 px-4 py-2 rounded">
+          <div class="flex justify-center mt-4 space-x-28 leading-tight">
+            <button type="submit"
+                    class="text-[#fdf6ee] border border-[#c8ad7f] px-6 py-2 rounded shadow hover:shadow-lg transition"
+                    style="background-color: rgba(176, 137, 104, 0.6);"
+                    onmouseover="this.style.backgroundColor='rgba(176, 137, 104, 0.85)'"
+                    onmouseout="this.style.backgroundColor='rgba(176, 137, 104, 0.5)'">
+              註冊
+            </button>
+            <button type="button" onclick="hideModal('register')" class="text-gray-600 hover:underline">取消...</button>
+          </div>
+        </form>
+      </div>
+    </div>  
+  </div>
+
+  <!-- 登入 Modal -->
+  <div id="signin" class="modal hidden fixed inset-0 bg-black bg-opacity-40 flex items-center justify-center z-10">
+    <div class="relative bg-cover bg-center border border-[#c8ad7f] p-0 rounded-xl shadow-lg w-full max-w-md"
+         style="background-image: url('/static/bg_register_signin.jpg');">
+      <div class="bg-white bg-opacity-5 p-8 rounded-xl">
+        <h3 class="text-2xl mb-4 text-stone-700 text-center">🐾 會員登入 🐾</h3>
+        <form action="/signin" method="post" class="space-y-4">
+          <input type="email" name="email" placeholder="信箱"
+                class="w-full border border-stone-300 px-4 py-2 rounded">
+          <input type="password" name="password" placeholder="密碼"
+                class="w-full border border-stone-300 px-4 py-2 rounded">
+          <div class="flex justify-center mt-4 space-x-28 leading-tight">
+            <button type="submit"
+                    class="text-[#fdf6ee] border border-[#c8ad7f] px-6 py-2 rounded shadow hover:shadow-lg transition"
+                    style="background-color: rgba(176, 137, 104, 0.6);"
+                    onmouseover="this.style.backgroundColor='rgba(176, 137, 104, 0.85)'"
+                    onmouseout="this.style.backgroundColor='rgba(176, 137, 104, 0.5)'">
+              登入
+            </button>
+            <button type="button" onclick="hideModal('signin')" class="text-gray-600 hover:underline">取消...</button>
+          </div>
+        </form>
+      </div>
+    </div>  
+  </div>
+
+<footer class="w-full bg-[rgba(44,76,64,0.8)] text-white mt-20 py-4 text-center">
+  Copyright © 2025 StrayCats
+</footer>
+
+<script src="/static/js/index.js"></script>
+</body>
+</html>
+
+
