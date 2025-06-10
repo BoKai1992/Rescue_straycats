@@ -70,22 +70,22 @@
             <tbody id="report-table" class="bg-white/80">
             {% for report in reports %}
             <tr data-id="{{ report._id }}">
-                <td>{{ loop.index }}</td>
-                <td class="status">{{ report.rescue_status if report.rescue_status else '待救援' }}</td>
-                <td>
+              <td>{{ loop.index }}</td>
+              <td class="status">{{ report.rescue_status if report.rescue_status else '待救援' }}</td>
+              <td>
                 {% if not report.rescue_status or report.rescue_status == '待救援' %}
                 <button onclick="updateStatus('{{ report._id }}', this)"
-                        class="text-xs px-3 py-1 rounded border border-green-700 bg-green-100 hover:bg-green-200 transition">
-                    變更為已救援
+                  class="text-xs px-3 py-1 rounded border border-green-700 bg-green-100 hover:bg-green-200 transition">
+                  變更為已救援
                 </button>
                 {% else %}-{% endif %}
-                </td>
-                <td>{{ report.formatted_time }}</td>
-                <td>{{ report.location }}</td>
-                <td>{{ report.status }}</td>
-                <td>{{ report.description }}</td>
-                <td><img src="{{ report.cat_photo }}" alt="貓咪照" class="max-w-[80px] mx-auto"></td>
-                <td><img src="{{ report.env_photo }}" alt="環境照" class="max-w-[80px] mx-auto"></td>
+              </td>
+              <td class="rescue-time">{{ report.formatted_time }}</td>
+              <td class="rescue-location">{{ report.location }}</td>
+              <td class="cat-status">{{ report.status }}</td>
+              <td class="env-description">{{ report.description }}</td>
+              <td class="cat-photo"><img src="{{ report.cat_photo }}" class="max-w-[80px] mx-auto"></td>
+              <td class="env-photo"><img src="{{ report.env_photo }}" class="max-w-[80px] mx-auto"></td>
             </tr>
             {% endfor %}
             </tbody>
@@ -93,33 +93,33 @@
       </div>  
     </div>
   </div>
-  <!-- 歷史救援紀錄表格（新增） -->
+  <!-- 歷史救援紀錄表格 -->
   <div class="max-w-7xl mx-auto bg-white bg-opacity-50 rounded-xl shadow-lg p-6 mb-12">
     <h3 class="text-2xl font-semibold text-stone-700 mb-4">🐾 歷史救援紀錄</h3>
     <div class="overflow-x-auto">
       <div class="max-h-[400px] overflow-y-auto">
-        <table class="min-w-full border-separate border-spacing-0 text-sm text-center">
+        <table class="min-w-full table-fixed w-full border-separate border-spacing-0 text-sm text-center">
           <thead class="bg-[#f5e6ca] text-[#5c4631] sticky top-0 z-10">
             <tr>
-              <th class="px-4 py-3 h-12 bg-[#f5e6ca]">編號</th>
-              <th class="bg-[#f5e6ca]">救援時間</th>
-              <th class="bg-[#f5e6ca]">地址</th>
-              <th class="bg-[#f5e6ca]">貓咪狀態</th>
-              <th class="bg-[#f5e6ca]">環境描述</th>
-              <th class="bg-[#f5e6ca]">貓咪照片</th>
-              <th class="bg-[#f5e6ca]">環境照片</th>
+              <th class="px-4 py-3 h-12 bg-[#f5e6ca] w-[60px]">編號</th>
+              <th class="w-[80px] bg-[#f5e6ca]">救援時間</th>
+              <th class="w-[220px] bg-[#f5e6ca]">地址</th>
+              <th class="w-[100px] bg-[#f5e6ca]">貓咪狀態</th>
+              <th class="w-[200px] bg-[#f5e6ca]">環境描述</th>
+              <th class="w-[100px] bg-[#f5e6ca]">貓咪照片</th>
+              <th class="w-[100px] bg-[#f5e6ca]">環境照片</th>
             </tr>
           </thead>
           <tbody id="rescued-history-table" class="bg-white/80">
             {% for record in rescued_reports %}
             <tr>
-              <td>{{ loop.index }}</td>
-              <td>{{ record.formatted_time }}</td>
-              <td>{{ record.location }}</td>
-              <td>{{ record.status }}</td>
-              <td>{{ record.description }}</td>
-              <td><img src="{{ record.cat_photo }}" alt="貓咪照" class="max-w-[80px] mx-auto"></td>
-              <td><img src="{{ record.env_photo }}" alt="環境照" class="max-w-[80px] mx-auto"></td>
+              <td class="w-[60px] truncate">{{ loop.index }}</td>
+              <td class="w-[80px]">{{ record.formatted_time }}</td>
+              <td class="w-[220px]">{{ record.location }}</td>
+              <td class="w-[100px]">{{ record.status }}</td>
+              <td class="w-[200px]">{{ record.description }}</td>
+              <td class="w-[100px]"><img src="{{ record.cat_photo }}" alt="貓咪照" class="w-[80px] min-w-[80px] h-auto mx-auto"></td>
+              <td class="w-[100px]"><img src="{{ record.env_photo }}" alt="環境照" class="w-[80px] min-w-[80px] h-auto mx-auto"></td>
             </tr>
             {% endfor %}
           </tbody>
