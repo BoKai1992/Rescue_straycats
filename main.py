@@ -115,18 +115,24 @@ async def signin(
     form = SignInForm(email=email, password=password)
     user = await db.user.find_one({"email": email})
     if not user:
-        return RedirectResponse(url="/?msg=登入失敗，請檢查信箱或密碼！", status_code=303)
+        return RedirectResponse(url="/logined?msg=登入失敗，請檢查信箱或密碼！", status_code=303)
     stored_hash_b64 = user["password"]
     stored_hash = base64.b64decode(stored_hash_b64.encode("utf-8"))
 
     if not bcrypt.checkpw(form.password.encode("utf-8"), stored_hash):
-        return RedirectResponse(url="/?msg=登入失敗，請檢查信箱或密碼！", status_code=303)
+        return RedirectResponse(url="/logined?msg=登入失敗，請檢查信箱或密碼！", status_code=303)
 
     # 登入成功，將暱稱儲存在 session 中
     request.session["nickname"] = user["nickname"]
 
     return RedirectResponse(url="/member", status_code=303)
 
+@app.get("/logined", response_class=HTMLResponse)
+async def logined(request: Request, msg: str = ""):
+    return templates.TemplateResponse("logined.html", {
+        "request": request,
+        "msg": msg
+    })
 
 # 登出功能（清除 session）
 @app.get("/logout")
