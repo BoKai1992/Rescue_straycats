@@ -11,8 +11,14 @@ A platform to report and rescue stray cats, built with FastAPI & MongoDB.
 - [網站功能 | Features](#網站功能--features)
 - [技術架構 | Tech Stack](#技術架構--tech-stack)
 - [操作方式 | Getting Started](#操作方式--getting-started)
-- [畫面預覽 | Screenshots](#畫面預覽--screenshots)
+- [頁面預覽 | Screenshots](#頁面預覽--screenshots)
+  - [首頁 | Index](#首頁--index)
+  - [註冊功能 | Register](#註冊功能--register)
+  - [登入功能 | Login](#登入功能--login)
+  - [通報頁面 | Reporter](#通報頁面--reporter)
+  - [救援頁面 | Rescuer](#救援頁面--rescuer)
 - [作者資訊 | About Me](#作者資訊--about-me)
+
 
 ---
 
@@ -26,12 +32,12 @@ A platform to report and rescue stray cats, built with FastAPI & MongoDB.
 
 ## 🌟 網站功能 | Features
 
-✅ 通報浪貓位置（地區、地址、描述）  
-✅ 照片上傳  
-✅ 救援者查看待救援清單並變更狀態  
-✅ 歷史紀錄查詢  
 ✅ 使用者註冊／登入（含 bcrypt 加密）  
 ✅ 表單驗證與錯誤提示  
+✅ 通報浪貓位置（地區、地址、描述）  
+✅ 照片上傳表  
+✅ 救援者查看待救援清單並變更狀態  
+✅ 歷史紀錄查詢  
 
 ---
 
@@ -66,3 +72,28 @@ uvicorn main:app --reload
 ## 🖼️ 畫面預覽 | Screenshots
 
 
+### 🏠 首頁 | Index
+![Index Page](assets/index.gif)
+![image](asset/index.gif)
+
+### 📝 註冊功能 | Register
+![Register Page](assets/register.gif)
+![image](asset/register.gif)
+
+### 🔐 登入功能 | Login
+![Login Page](assets/login.gif)
+![image](asset/login.gif)
+
+### 🚨 通報頁面 | Reporter
+![Reporter Page](assets/reporter.gif)
+![image](asset/report.gif)
+
+### 🛟 救援頁面 | Rescuer
+![Rescuer Page](assets/rescuer.gif)
+![image](asset/rescue.gif)
+
+---
+
+### 👨🏻‍💻 作者資訊 | About Me
+* **轉職＆自學ing～目標成為一位後端工程師**
+* **個人學、經歷請參考：**[104履歷]([https://github.com/yourusername](https://pda.104.com.tw/profile/share/a52o5svb53aKxGBcphr2kuksTpBEFwCm))
