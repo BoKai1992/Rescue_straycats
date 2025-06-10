@@ -7,7 +7,7 @@ A platform to report and rescue stray cats, built with FastAPI & MongoDB.
 
 ## 📌 目錄 | Table of Contents
 
-- [專案簡介 | Introduction](#專案簡介--introduction)
+- 專案簡介 | [Introduction](#專案簡介--introduction)
 - [網站功能 | Features](#網站功能--features)
 - [技術架構 | Tech Stack](#技術架構--tech-stack)
 - [操作方式 | Getting Started](#操作方式--getting-started)
@@ -22,7 +22,7 @@ A platform to report and rescue stray cats, built with FastAPI & MongoDB.
 
 ---
 
-## 🐾 專案簡介 | Introduction
+##  專案簡介 | Introduction
 
 因平日時常關注浪貓的相關資訊，故由此為發想點嘗試將通報平台實現出來，
 網站內架設通報的相關功能如提供資訊、上傳照片等，  
@@ -30,7 +30,7 @@ A platform to report and rescue stray cats, built with FastAPI & MongoDB.
 
 ---
 
-## 🌟 網站功能 | Features
+##  網站功能 | Features
 
 ✅ 使用者註冊／登入（含 bcrypt 加密）  
 ✅ 表單驗證與錯誤提示  
@@ -41,7 +41,7 @@ A platform to report and rescue stray cats, built with FastAPI & MongoDB.
 
 ---
 
-## 💻 技術架構 | Tech Stack
+##  技術架構 | Tech Stack
 
 **前端 | Frontend**
 - HTML + TailwindCSS
@@ -59,7 +59,7 @@ A platform to report and rescue stray cats, built with FastAPI & MongoDB.
 
 ---
 
-## ⚙️ 操作方式 | Getting Started
+##  操作方式 | Getting Started
 
 ```bash
 git clone https://github.com/your-username/straycat-rescue.git
@@ -69,31 +69,26 @@ uvicorn main:app --reload
 ```
 ---
 
-## 🖼️ 畫面預覽 | Screenshots
+##  頁面預覽 | Screenshots
 
 
-### 🏠 首頁 | Index
-![Index Page](assets/index.gif)
+###  首頁 | Index
 ![image](asset/index.gif)
 
-### 📝 註冊功能 | Register
-![Register Page](assets/register.gif)
+###  註冊功能 | Register
 ![image](asset/register.gif)
 
-### 🔐 登入功能 | Login
-![Login Page](assets/login.gif)
+###  登入功能 | Login
 ![image](asset/login.gif)
 
-### 🚨 通報頁面 | Reporter
-![Reporter Page](assets/reporter.gif)
+###  通報頁面 | Reporter
 ![image](asset/report.gif)
 
-### 🛟 救援頁面 | Rescuer
-![Rescuer Page](assets/rescuer.gif)
+###  救援頁面 | Rescuer
 ![image](asset/rescue.gif)
 
 ---
 
-### 👨🏻‍💻 作者資訊 | About Me
+###  作者資訊 | About Me
 * **轉職＆自學ing～目標成為一位後端工程師**
-* **個人學、經歷請參考：**[104履歷]([https://github.com/yourusername](https://pda.104.com.tw/profile/share/a52o5svb53aKxGBcphr2kuksTpBEFwCm))
+* 個人學、經歷請參考：[104履歷](https://pda.104.com.tw/profile/share/a52o5svb53aKxGBcphr2kuksTpBEFwCm)
