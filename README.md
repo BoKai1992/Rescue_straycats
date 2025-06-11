@@ -73,7 +73,7 @@ uvicorn main:app --reload
 
 
 ###  首頁 | Index
-![image](asset/index.gif)
+<img src="assets/index.gif" alt="Index Page" width="700" height="auto">
 
 ###  註冊功能 | Register
 ![image](asset/register.gif)
