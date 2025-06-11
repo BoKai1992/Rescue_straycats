@@ -79,7 +79,7 @@ uvicorn main:app --reload
 <img src="asset/login.gif" alt="Login Page" width="700" height="auto">
 
 ###  登入功能 | Login
-
+![Index Page](asset/login.gif)
 
 ###  通報頁面 | Reporter
 <img src="asset/report.gif" alt="Reporter Page" width="1024" height="auto">
