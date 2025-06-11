@@ -82,7 +82,7 @@ uvicorn main:app --reload
 ![Index Page](asset/login.gif)
 
 ###  通報頁面 | Reporter
-
+![Index Page](asset/report.gif)
 
 ###  救援頁面 | Rescuer
 ![Index Page](asset/rescue.gif)
