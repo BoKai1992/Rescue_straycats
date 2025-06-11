@@ -85,7 +85,7 @@ uvicorn main:app --reload
 ![image](asset/report.gif)
 
 ###  救援頁面 | Rescuer
-![image](asset/rescue.gif)
+![Index Page](asset/rescue.gif)
 
 ---
 
