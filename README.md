@@ -76,16 +76,16 @@ uvicorn main:app --reload
 ![Index Page](asset/index.gif)
 
 ###  註冊功能 | Register
-![Image](asset/register.gif)
+<img src="asset/login.gif" alt="Login Page" width="700" height="auto">
 
 ###  登入功能 | Login
 ![image](asset/login.gif)
 
 ###  通報頁面 | Reporter
-![image](asset/report.gif)
+<img src="asset/report.gif" alt="Reporter Page" width="1024" height="auto">
 
 ###  救援頁面 | Rescuer
-<img src="asset/rescue.gif" alt="Rescuer Page" width="700" height="auto">
+<img src="asset/rescue.gif" alt="Rescuer Page" width="1024" height="auto">
 
 
 ---
