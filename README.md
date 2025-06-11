@@ -76,7 +76,7 @@ uvicorn main:app --reload
 ![Index Page](asset/index.gif)
 
 ###  註冊功能 | Register
-<img src="asset/login.gif" alt="Login Page" width="700" height="auto">
+![Index Page](asset/register.gif)
 
 ###  登入功能 | Login
 ![Index Page](asset/login.gif)
