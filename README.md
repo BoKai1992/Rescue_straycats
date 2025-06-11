@@ -20,12 +20,12 @@ A platform to report and rescue stray cats, built with FastAPI & MongoDB.
   - 救援頁面 | [Rescuer](#救援頁面--rescuer)
 - 作者資訊 | [About Me](#作者資訊--about-me)
 
-
 ---
 
 ##  專案簡介 | Introduction
 
-因平日時常關注浪貓的相關資訊，故由此為發想點嘗試將通報平台實現出來，
+因平日時常關注浪貓的相關資訊，  
+故由此為發想點嘗試將通報平台實現出來，  
 網站內架設通報的相關功能如提供資訊、上傳照片等，  
 讓有愛心的會員可透過網站資源進行通報與救援。
 
@@ -87,7 +87,6 @@ uvicorn main:app --reload
 
 ###  救援頁面 | Rescuer
 ![Index Page](asset/rescue.gif)
-
 
 ---
 
